@@ -1,0 +1,12 @@
+extends Button
+
+@export var target_scene: String = "res://Main.tscn"
+
+func _ready() -> void:
+	# safe connect using Callable
+	connect("pressed", Callable(self, "_on_button_pressed"))
+
+func _on_button_pressed() -> void:
+	var err = get_tree().change_scene_to_file(target_scene)
+	if err != OK:
+		push_error("Failed to change scene to '%s' (error code: %s)" % [target_scene, str(err)])

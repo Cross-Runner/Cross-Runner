@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://8yw45yb0vja"]
+[gd_scene load_steps=5 format=3 uid="uid://8yw45yb0vja"]
 
 [ext_resource type="Texture2D" uid="uid://dkr6jseitwavu" path="res://Resources/Facts-about-Chrismtas-5.jpg" id="1_5b7ti"]
+[ext_resource type="Script" uid="uid://yelvnhqekend" path="res://button.gd" id="2_dvdtt"]
+[ext_resource type="Script" uid="uid://k8l46frb8pyf" path="res://button_2.gd" id="3_i5qic"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
 bg_color = Color(1, 1, 1, 1)
@@ -45,6 +47,7 @@ theme_override_constants/h_separation = 12
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
 text = "Start Game"
+script = ExtResource("2_dvdtt")
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -53,7 +56,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 12
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
-text = "Options"
+text = "Skins"
+script = ExtResource("3_i5qic")
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -63,3 +67,5 @@ theme_override_constants/h_separation = 12
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
 text = "Credits"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]
