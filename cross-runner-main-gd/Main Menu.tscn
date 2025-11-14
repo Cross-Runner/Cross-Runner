@@ -21,8 +21,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FactsAboutChrismtas5" type="Sprite2D" parent="."]
-position = Vector2(576.25, 323.5)
-scale = Vector2(1.8070865, 1.6014851)
+position = Vector2(1721.8872, 962.5)
+scale = Vector2(5.415392, 4.764851)
 texture = ExtResource("1_5b7ti")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -32,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.522
 anchor_right = 0.5
 anchor_bottom = 0.522
-offset_left = -167.0
-offset_top = -108.25601
-offset_right = 171.0
-offset_bottom = 177.74399
+offset_left = -191.0
+offset_top = -117.76001
+offset_right = 147.0
+offset_bottom = 168.23999
 grow_horizontal = 2
 grow_vertical = 2
 
