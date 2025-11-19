@@ -1,6 +1,7 @@
 extends Button
 
-@export var target_scene: String = "res://Main.tscn"
+
+@export var target_scene: String = "res://CR_Scene1.tscn"
 
 func _ready() -> void:
 	# safe connect using Callable
