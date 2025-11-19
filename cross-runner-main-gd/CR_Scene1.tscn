@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://cowq35l0nvx8"]
+[gd_scene load_steps=24 format=4 uid="uid://cowq35l0nvx8"]
 
 [ext_resource type="Texture2D" uid="uid://cwwp3kabon0lc" path="res://Resources/Final/Tiles.png" id="1_b0xqd"]
 [ext_resource type="Texture2D" uid="uid://lbhnhc3yjxd4" path="res://Resources/Final/113-1139407_portal-transparent-portal-pixel-art-png-png-download (1).png" id="2_k52sp"]
 [ext_resource type="Texture2D" uid="uid://62ihtonvkg8i" path="res://Resources/Final/Crossrunner-karakter 1 anim.png" id="3_b8cuv"]
+[ext_resource type="Script" uid="uid://d2odl3gk4nona" path="res://area_2d.gd" id="3_eijjj"]
 [ext_resource type="Script" uid="uid://bpfhm3xotuh1f" path="res://character_body_2d.gd" id="3_wg0gw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k52sp"]
@@ -493,13 +494,14 @@ region_enabled = true
 region_rect = Rect2(433, 40, 196, 383)
 
 [node name="Area2D" type="Area2D" parent="Sprite2D2"]
+script = ExtResource("3_eijjj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D"]
 rotation = 1.5707964
 scale = Vector2(1.2771642, -0.54447174)
 shape = SubResource("CircleShape2D_wg0gw")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(-895.00006, 408)
 scale = Vector2(3.3600004, 3.3600004)
 script = ExtResource("3_wg0gw")
@@ -508,7 +510,7 @@ script = ExtResource("3_wg0gw")
 sprite_frames = SubResource("SpriteFrames_c3x6o")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.96268344
+frame_progress = 0.36010623
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0.5952566, -2.6785793)

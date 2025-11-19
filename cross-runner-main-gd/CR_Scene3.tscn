@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://0pcnypu8nlqo"]
+[gd_scene load_steps=14 format=4 uid="uid://pw7b286uillm"]
 
 [ext_resource type="Texture2D" uid="uid://cwwp3kabon0lc" path="res://Resources/Final/Tiles.png" id="1_bhw7d"]
 [ext_resource type="Texture2D" uid="uid://lbhnhc3yjxd4" path="res://Resources/Final/113-1139407_portal-transparent-portal-pixel-art-png-png-download (1).png" id="2_dc8p0"]
+[ext_resource type="Script" uid="uid://bpfhm3xotuh1f" path="res://character_body_2d.gd" id="3_xcdkk"]
+[ext_resource type="Texture2D" uid="uid://62ihtonvkg8i" path="res://Resources/Final/Crossrunner-karakter 1 anim.png" id="4_i7i2o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dc8p0"]
 texture = ExtResource("1_bhw7d")
@@ -389,6 +391,53 @@ texture = ExtResource("1_bhw7d")
 [sub_resource type="TileSet" id="TileSet_f4gam"]
 sources/0 = SubResource("TileSetAtlasSource_dc8p0")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg0gw"]
+atlas = ExtResource("4_i7i2o")
+region = Rect2(1, 10, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eijjj"]
+atlas = ExtResource("4_i7i2o")
+region = Rect2(1, 54, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4xdy"]
+atlas = ExtResource("4_i7i2o")
+region = Rect2(24, 54, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuq82"]
+atlas = ExtResource("4_i7i2o")
+region = Rect2(47, 54, 21, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qvur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg0gw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_eijjj")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_x4xdy")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_xuq82")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cil81"]
+radius = 9.825936
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alx3q"]
+size = Vector2(14.2262, 20)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -401,3 +450,24 @@ scale = Vector2(0.23333333, 0.18146214)
 texture = ExtResource("2_dc8p0")
 region_enabled = true
 region_rect = Rect2(30, 40, 195, 383)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(49, 359.00003)
+scale = Vector2(1.3199983, 1.3199983)
+script = ExtResource("3_xcdkk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_3qvur")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5952566, -2.6785793)
+shape = SubResource("CircleShape2D_cil81")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.59525645, 5.95238)
+shape = SubResource("RectangleShape2D_alx3q")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
