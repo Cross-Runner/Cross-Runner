@@ -1,0 +1,83 @@
+[gd_scene load_steps=18 format=3 uid="uid://diwdfyykp7sxb"]
+
+[ext_resource type="Texture2D" uid="uid://3wg4ue1a0oxy" path="res://boss battle/idle_1.png" id="1_oawp3"]
+[ext_resource type="Texture2D" uid="uid://druqgh2u34aqq" path="res://boss battle/idle_2.png" id="2_ihck0"]
+[ext_resource type="Texture2D" uid="uid://bsdd711clrq8k" path="res://boss battle/idle_3.png" id="3_ctx4h"]
+[ext_resource type="Texture2D" uid="uid://de883osg3hnuh" path="res://boss battle/idle_4.png" id="4_e51dc"]
+[ext_resource type="Texture2D" uid="uid://caic3c511l0j2" path="res://boss battle/idle_5.png" id="5_b07ia"]
+[ext_resource type="Texture2D" uid="uid://cer4f6dddlk62" path="res://boss battle/idle_6.png" id="6_uif0k"]
+[ext_resource type="Texture2D" uid="uid://da67ov3l46c4k" path="res://boss battle/idle_7.png" id="7_vc48c"]
+[ext_resource type="Texture2D" uid="uid://cir3nrhaxwtt6" path="res://boss battle/idle_8.png" id="8_tlmpn"]
+[ext_resource type="Texture2D" uid="uid://c2ru0qfhsvv0r" path="res://boss battle/idle_9.png" id="9_ysg62"]
+[ext_resource type="Texture2D" uid="uid://dv00u3oshsblc" path="res://boss battle/idle_10.png" id="10_mrv5a"]
+[ext_resource type="Texture2D" uid="uid://d46g72p0ickb" path="res://boss battle/idle_11.png" id="11_xmnwd"]
+[ext_resource type="Texture2D" uid="uid://r8kvcnhwums4" path="res://boss battle/idle_12.png" id="12_22ufb"]
+[ext_resource type="Texture2D" uid="uid://b8kig5efx0mkf" path="res://boss battle/idle_13.png" id="13_vpndo"]
+[ext_resource type="Texture2D" uid="uid://h3bvkl8bc5la" path="res://boss battle/idle_14.png" id="14_npfkf"]
+[ext_resource type="Texture2D" uid="uid://b265wrwg3r3po" path="res://boss battle/idle_15.png" id="15_yt20n"]
+[ext_resource type="Texture2D" uid="uid://dn5xlddaqn85a" path="res://boss battle/idle_16.png" id="16_bufmk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5xi8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oawp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ihck0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ctx4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e51dc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b07ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uif0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vc48c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tlmpn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ysg62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mrv5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xmnwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_22ufb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vpndo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_npfkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yt20n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bufmk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_h5xi8")
+autoplay = "default"
+frame_progress = 0.004611883
