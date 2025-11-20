@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://diwdfyykp7sxb"]
+[gd_scene load_steps=52 format=4 uid="uid://diwdfyykp7sxb"]
 
 [ext_resource type="Texture2D" uid="uid://3wg4ue1a0oxy" path="res://boss battle/idle_1.png" id="1_oawp3"]
 [ext_resource type="Texture2D" uid="uid://druqgh2u34aqq" path="res://boss battle/idle_2.png" id="2_ihck0"]
@@ -201,6 +201,12 @@ animations = [{
 "name": &"new_animation_1",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lii25"]
+radius = 28.160255
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwyy4"]
+size = Vector2(54, 38)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odrhd"]
 texture = ExtResource("17_ihck0")
@@ -588,6 +594,9 @@ texture = ExtResource("17_ihck0")
 [sub_resource type="TileSet" id="TileSet_bo3pb"]
 sources/0 = SubResource("TileSetAtlasSource_odrhd")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lii25"]
+size = Vector2(423, 14)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -596,9 +605,28 @@ sources/0 = SubResource("TileSetAtlasSource_odrhd")
 position = Vector2(268.00003, -49.000004)
 scale = Vector2(0.71313936, 0.7679686)
 sprite_frames = SubResource("SpriteFrames_h5xi8")
+animation = &"new_animation_1"
 autoplay = "default"
-frame_progress = 0.27495363
+frame_progress = 0.16988163
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(265, -38)
+shape = SubResource("CircleShape2D_lii25")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(263, -19)
+shape = SubResource("RectangleShape2D_uwyy4")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(259, -51)
+zoom = Vector2(8, 8)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAACAAAAAAAIAAEAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAEAAAAFAAAAAAAIAAEAAAAGAAAAAAAIAAEAAAAHAAAAAAAIAAEAAAAIAAAAAAAIAAEAAAAJAAAAAAAIAAEAAAAKAAAAAAAIAAEAAAALAAAAAAAIAAEAAAAMAAAAAAAIAAEAAAANAAAAAAAIAAEAAAAOAAAAAAAIAAEAAAAPAAAAAAAIAAEAAAAQAAAAAAAIAAEAAAARAAAAAAAIAAEAAAASAAAAAAAIAAEAAAATAAAAAAAIAAEAAAATAP//AAAIAAEAAAAUAP//AAAIAAEAAAAVAP//AAAIAAEAAAAVAAAAAAAIAAEAAAAWAAAAAAAIAAEAAAAXAAAAAAAIAAEAAAAYAAAAAAAIAAEAAAAZAAAAAAAIAAEAAAAaAAAAAAAIAAEAAAAUAAAAAAAIAAEAAAAcAPr/AAAIAAEAAAA=")
+tile_map_data = PackedByteArray("AAACAAAAAAAIAAEAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAEAAAAFAAAAAAAIAAEAAAAGAAAAAAAIAAEAAAAHAAAAAAAIAAEAAAAIAAAAAAAIAAEAAAAJAAAAAAAIAAEAAAAKAAAAAAAIAAEAAAALAAAAAAAIAAEAAAAMAAAAAAAIAAEAAAANAAAAAAAIAAEAAAAOAAAAAAAIAAEAAAAPAAAAAAAIAAEAAAAQAAAAAAAIAAEAAAARAAAAAAAIAAEAAAASAAAAAAAIAAEAAAATAAAAAAAIAAEAAAAVAAAAAAAIAAEAAAAWAAAAAAAIAAEAAAAXAAAAAAAIAAEAAAAYAAAAAAAIAAEAAAAZAAAAAAAIAAEAAAAaAAAAAAAIAAEAAAAUAAAAAAAIAAEAAAAbAAAAAAAIAAEAAAAcAAAAAAAIAAEAAAADAAEAAAADAAMAAAAEAAEAAAADAAMAAAAFAAEAAAADAAMAAAAGAAEAAAADAAMAAAAHAAEAAAADAAMAAAAIAAEAAAADAAMAAAAJAAEAAAADAAMAAAAKAAEAAAADAAMAAAALAAEAAAADAAMAAAAMAAEAAAADAAMAAAANAAEAAAADAAMAAAAOAAEAAAADAAMAAAAPAAEAAAADAAMAAAAQAAEAAAADAAMAAAARAAEAAAADAAMAAAASAAEAAAADAAMAAAATAAEAAAADAAMAAAAUAAEAAAADAAMAAAAVAAEAAAADAAMAAAAWAAEAAAADAAMAAAAXAAEAAAADAAMAAAAYAAEAAAADAAMAAAAbAAEAAAADAAMAAAAaAAEAAAADAAMAAAAZAAEAAAADAAMAAAAcAAEAAAAHAAMAAAACAAEAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_bo3pb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMapLayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/StaticBody2D"]
+position = Vector2(250.5, 22)
+shape = SubResource("RectangleShape2D_lii25")
