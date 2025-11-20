@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://clw5gj02q5sor"]
+[gd_scene load_steps=33 format=4 uid="uid://clw5gj02q5sor"]
 
 [ext_resource type="Texture2D" uid="uid://cwwp3kabon0lc" path="res://Resources/Final/Tiles.png" id="1_k3g3s"]
 [ext_resource type="Texture2D" uid="uid://lbhnhc3yjxd4" path="res://Resources/Final/113-1139407_portal-transparent-portal-pixel-art-png-png-download (1).png" id="1_vvd5v"]
@@ -404,6 +404,9 @@ size = Vector2(32.399998, 22.399963)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66lpe"]
 size = Vector2(33.19999, 32.799995)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4osq5"]
+distance = -1046.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj1u"]
 size = Vector2(63.599976, 165.19995)
 
@@ -528,6 +531,9 @@ shape = SubResource("RectangleShape2D_hokju")
 position = Vector2(607.3999, 451.19998)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_66lpe")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="TileMapLayer/Killbody/Area2D"]
+shape = SubResource("WorldBoundaryShape2D_4osq5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
