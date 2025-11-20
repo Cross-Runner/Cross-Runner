@@ -864,9 +864,9 @@ size = Vector2(19.6131, 23.095245)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="BossCharacter" type="CharacterBody2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BossCharacter"]
 position = Vector2(268.00003, -49.000004)
 scale = Vector2(0.71313936, 0.7679686)
 sprite_frames = SubResource("SpriteFrames_h5xi8")
@@ -874,11 +874,11 @@ animation = &"new_animation_1"
 autoplay = "default"
 frame_progress = 0.16988163
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossCharacter"]
 position = Vector2(265, -38)
 shape = SubResource("CircleShape2D_lii25")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossCharacter"]
 position = Vector2(263, -19)
 shape = SubResource("RectangleShape2D_uwyy4")
 
