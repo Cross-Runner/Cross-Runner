@@ -1,84 +1,127 @@
+# boss.gd
 extends CharacterBody2D
 
 @export var max_health: int = 100
-@export var attack_damage: int = 15
-@export var attack_cooldown_time: float = 2.0
-@export var move_speed: float = 20.0
+@export var attack_damage: int = 20
+@export var attack_cooldown_time: float = 1.5
+@export var attack_hit_duration: float = 0.2
 
 var health: int
-var can_attack := true
-var player = null
+var can_attack: bool = true
+var player: Node = null
 
-@onready var anim = $AnimationPlayer
-@onready var sprite = $AnimatedSprite2D
-@onready var hitbox = $AttackHitbox
-@onready var cooldown = $AttackCooldown
-@onready var health_bar = $HealthBar
+# expected children (exact names)
+@onready var player_detect: Area2D = $PlayerDetect
+@onready var attack_hitbox: Area2D = $AttackHitbox
+@onready var cooldown_timer: Timer = $AttackCooldown
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var health_bar: ProgressBar = $HealthBar
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-func _ready():
+func _ready() -> void:
 	health = max_health
-	health_bar.max_value = max_health
-	health_bar.value = max_health
-	
-	# Detect when the player enters
-	$PlayerDetect.body_entered.connect(_on_player_detected)
-	$PlayerDetect.body_exited.connect(_on_player_left)
-	
-	# Detect when hitbox hits player
-	hitbox.body_entered.connect(_on_hit_player)
-	
-	cooldown.wait_time = attack_cooldown_time
-	cooldown.timeout.connect(_on_cooldown_finished)
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = health
 
-func _physics_process(delta):
-	if player:
-		# Simple movement toward player (optional)
-		var direction = sign(player.global_position.x - global_position.x)
-		velocity.x = direction * move_speed
-		move_and_slide()
+	attack_hitbox.monitoring = false
+	can_attack = true
+
+	# Connect signals using the stable connect API
+	if player_detect:
+		player_detect.connect("body_entered", Callable(self, "_on_player_detected"))
+		player_detect.connect("body_exited",  Callable(self, "_on_player_exited"))
 	else:
-		velocity.x = 0
+		push_warning("Boss: missing PlayerDetect node")
 
-func _on_player_detected(body):
-	if body.name == "Player":
+	if attack_hitbox:
+		attack_hitbox.connect("body_entered", Callable(self, "_on_attack_hitbox_entered"))
+	else:
+		push_warning("Boss: missing AttackHitbox node")
+
+	if cooldown_timer:
+		cooldown_timer.one_shot = true
+		cooldown_timer.wait_time = attack_cooldown_time
+		cooldown_timer.connect("timeout", Callable(self, "_on_cooldown_timeout"))
+	else:
+		push_warning("Boss: missing AttackCooldown Timer node")
+
+	if anim_player:
+		anim_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+
+	print_debug("[BOSS] ready (health=%d)" % health)
+
+func _on_player_detected(body: Node) -> void:
+	if body and body.is_in_group("player"):
+		print_debug("[BOSS] player detected: %s" % body.name)
 		player = body
-		attack()
+		_try_attack()
 
-func _on_player_left(body):
+func _on_player_exited(body: Node) -> void:
 	if body == player:
+		print_debug("[BOSS] player left")
 		player = null
 
-func attack():
-	if not can_attack:
+func _try_attack() -> void:
+	if not player or not can_attack:
 		return
 	can_attack = false
-	anim.play("attack")            # Your attack animation
-	hitbox.monitoring = true       # Enable hitbox only when attacking
-	
-	cooldown.start()               # Start cooldown timer
+	print_debug("[BOSS] attack start")
+	# enable hitbox for a short time (animation optional)
+	_enable_hitbox_temporarily(attack_hit_duration)
+	if cooldown_timer:
+		cooldown_timer.start()
+	else:
+		# fallback timer via SceneTree
+		get_tree().create_timer(attack_cooldown_time).connect("timeout", Callable(self, "_on_cooldown_timeout"))
 
-func _on_cooldown_finished():
-	can_attack = true
-	hitbox.monitoring = false      # Hitbox off until next attack
-	if player:
-		attack()
+func _enable_hitbox_temporarily(duration: float) -> void:
+	attack_hitbox.monitoring = true
+	print_debug("[BOSS] hitbox ON")
+	# Use scene tree timer to disable after 'duration'
+	get_tree().create_timer(duration).connect("timeout", Callable(self, "_disable_hitbox"))
 
-func _on_hit_player(body):
-	if body.name == "Player":
+func _disable_hitbox() -> void:
+	attack_hitbox.monitoring = false
+	print_debug("[BOSS] hitbox OFF")
+
+func _on_attack_hitbox_entered(body: Node) -> void:
+	if body and body.is_in_group("player"):
+		print_debug("[BOSS] hit player: %s" % body.name)
 		if body.has_method("take_damage"):
 			body.take_damage(attack_damage)
+		else:
+			print_debug("[BOSS] player missing take_damage()")
 
-# Boss takes damage from player
-func take_damage(amount: int):
+func _on_cooldown_timeout() -> void:
+	can_attack = true
+	print_debug("[BOSS] cooldown done")
+	if player:
+		_try_attack()
+
+func take_damage(amount: int) -> void:
 	health -= amount
-	health_bar.value = health
-	anim.play("hurt")
-
+	print_debug("[BOSS] took %d dmg -> hp %d" % [amount, health])
+	if health_bar:
+		health_bar.value = max(0, health)
 	if health <= 0:
-		die()
+		_die()
 
-func die():
-	anim.play("death")
+func _die() -> void:
+	print_debug("[BOSS] died")
+	# disable interactions
 	set_physics_process(false)
-	hitbox.monitoring = false
-	$CollisionShape2D.disabled = true
+	if collision_shape:
+		collision_shape.disabled = true
+	attack_hitbox.monitoring = false
+	queue_free()
+
+func _on_animation_finished(anim_name: String) -> void:
+	# keep this for safety if you add animations later
+	if anim_name == "death":
+		queue_free()
+
+func print_debug(text: String) -> void:
+	# print only in editor or debug builds
+	if Engine.is_editor_hint() or OS.is_debug_build():
+		print(text)
