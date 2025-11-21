@@ -7,9 +7,17 @@ const MAX_JUMPS = 2
 var jumps_left = MAX_JUMPS
 
 @onready var anim = $AnimatedSprite2D
+@onready var coin_label = %Label
+@onready var sfx_attack: AudioStreamPlayer2D = $"../sfx_attack"
+@onready var sfx_jump: AudioStreamPlayer2D = $"../sfx_jump"
+@onready var sfx_coin: AudioStreamPlayer2D = $"../sfx_coin"
+
+
 
 # For å hindre at man "avbryter" attack med idle/walk
 var is_attacking = false
+
+var coin_counter = 0
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -22,11 +30,13 @@ func _physics_process(delta: float) -> void:
 
 	# Attack
 	if Input.is_action_just_pressed("attack") and not is_attacking:
+		sfx_attack.play()
 		_play_attack()
 		return  # stopper videre bevegelses/animasjonslogikk mens attack spiller
 
 	# Jump
 	if Input.is_action_just_pressed("ui_accept") and jumps_left > 0:
+		sfx_jump.play()
 		velocity.y = JUMP_VELOCITY
 		jumps_left -= 1
 
@@ -60,3 +70,13 @@ func _play_attack() -> void:
 	await anim.animation_finished
 
 	is_attacking = false
+
+func _on_area_2d_coin_area_entered(area: Area2D) -> void:
+	if area.is_in_group("coin"):
+		sfx_coin.play()
+		set_coin(coin_counter + 1)
+		print(coin_counter)
+
+func set_coin(new_coin_count: int) -> void:
+	coin_counter = new_coin_count
+	coin_label.text = "Coin Count: " + str(coin_counter )
