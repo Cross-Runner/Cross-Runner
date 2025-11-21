@@ -80,3 +80,4 @@ func _on_area_2d_coin_area_entered(area: Area2D) -> void:
 func set_coin(new_coin_count: int) -> void:
 	coin_counter = new_coin_count
 	coin_label.text = "Coin Count: " + str(coin_counter )
+	
