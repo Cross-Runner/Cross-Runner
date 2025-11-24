@@ -1,14 +1,35 @@
-extends CharacterBody2D   # or whatever your boss uses
+extends ProgressBar
 
-@export var max_health: int = 300
-var health: int = max_health
 
-signal boss_health_changed(new_value)
+@onready var timer = $Timer
+@onready var damage_bar = $DamageBar
 
-func take_damage(amount: int):
-	health = clamp(health - amount, 0, max_health)
-	emit_signal("boss_health_changed", health)
 
-func heal(amount: int):
-	health = clamp(health + amount, 0, max_health)
-	emit_signal("boss_health_changed", health)
+var health = 0 : set = _set_health
+
+
+func _set_health	(new_health):
+	var prev_health = health
+	health = min(max_value, new_health)
+	value = health
+	
+	if health <= 0:
+		queue_free()
+		
+	if health < prev_health:
+		timer.start()
+	else:
+		damage_bar.value = health
+
+
+func init_health(_health):
+	health = _health
+	max_value = health
+	value = health
+	damage_bar.max_value = health
+	damage_bar.value	  = health
+
+	
+
+func _on_timer_timeout() -> void:
+	damage_bar.value = health
