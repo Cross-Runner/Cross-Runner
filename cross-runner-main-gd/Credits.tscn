@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2cebt6xo2tgd"]
 
 [ext_resource type="Texture2D" uid="uid://cg14qnddc88yq" path="res://Resources/black-screen_39.png" id="1_k2yj5"]
-[ext_resource type="Script" path="res://background.gd" id="2_ia8qu"]
+[ext_resource type="Script" uid="uid://cblnbbguwvygi" path="res://background.gd" id="2_ia8qu"]
 [ext_resource type="Texture2D" uid="uid://f0l8mxllyqnm" path="res://Resources/pngimg.com - snow_PNG16.png" id="2_xic2l"]
 [ext_resource type="Script" uid="uid://xi6u7xfji75m" path="res://fore.gd" id="3_s70hm"]
 [ext_resource type="Texture2D" uid="uid://ciq228fgyi06w" path="res://Resources/237722 (1).png" id="4_ia8qu"]
