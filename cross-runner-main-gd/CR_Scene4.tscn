@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://4g4uguj7kex2"]
+[gd_scene load_steps=77 format=4 uid="uid://45vk8t3n1sg1"]
 
 [ext_resource type="Texture2D" uid="uid://ql2okrshffpq" path="res://Resources/Final/Background_0.png" id="1_e3hiu"]
 [ext_resource type="Texture2D" uid="uid://r1kaybxap2v3" path="res://Resources/Final/Grass_background_1.png" id="2_7236l"]
@@ -11,12 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://bfwqdqbyfs8qk" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="8_kq7lv"]
 [ext_resource type="Texture2D" uid="uid://bujs3nind3v03" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/RUN.png" id="9_8438c"]
 [ext_resource type="Texture2D" uid="uid://bqqdk4e7hv0he" path="res://HUD/hudHeart_full.png" id="11_2wjic"]
-[ext_resource type="PackedScene" uid="uid://w5ifqe76lkfr" path="res://coin.tscn" id="12_kq7lv"]
+[ext_resource type="PackedScene" path="res://coin.tscn" id="12_kq7lv"]
 [ext_resource type="AudioStream" uid="uid://ccamgmnbjey64" path="res://sfx/narutoJumpsfx.ogg" id="13_8438c"]
 [ext_resource type="AudioStream" uid="uid://rola3al1cmax" path="res://sfx/narutoSwingsfx.ogg" id="14_id2bo"]
 [ext_resource type="AudioStream" uid="uid://xlbh4thvu07n" path="res://sfx/untitled.wav" id="15_1tr0o"]
 [ext_resource type="AudioStream" uid="uid://bdg7b2u2v1dev" path="res://sfx/buttonSFX1.wav" id="16_theea"]
 [ext_resource type="AudioStream" uid="uid://b04d1ly2j7c24" path="res://sfx/Jeremy Korpas - Sour Rock  NO COPYRIGHT 8-bit Music.mp3" id="18_8bw4v"]
+[ext_resource type="Script" uid="uid://d2odl3gk4nona" path="res://area_2d.gd" id="18_w5wtu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e4tx"]
 texture = ExtResource("3_7236l")
@@ -1100,6 +1101,12 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wjic"]
 radius = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bw4v"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ru"]
+size = Vector2(121.5, 44)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="BACKGROUND" type="Node2D" parent="."]
@@ -1513,5 +1520,17 @@ stream = ExtResource("18_8bw4v")
 volume_db = -12.0
 autoplay = true
 
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("18_w5wtu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(838, 931)
+shape = SubResource("CapsuleShape2D_8bw4v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1470.25, 1049)
+shape = SubResource("RectangleShape2D_k52ru")
+
 [connection signal="area_entered" from="TileMapLayer/Killbody/Area2D4D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/Area2D_coin" to="CharacterBody2D" method="_on_area_2d_coin_area_entered"]
+[connection signal="body_entered" from="Area2D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_2d_body_entered"]
