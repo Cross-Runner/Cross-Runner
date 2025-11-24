@@ -12,11 +12,11 @@ var jumps_left = MAX_JUMPS
 @onready var sfx_jump: AudioStreamPlayer2D = $"../sfx_jump"
 @onready var sfx_coin: AudioStreamPlayer2D = $"../sfx_coin"
 
+# Attack hitbox
+@onready var attack_hitbox = $AttackHitbox
+@onready var attack_shape = $AttackHitbox/CollisionShape2D
 
-
-# For å hindre at man "avbryter" attack med idle/walk
 var is_attacking = false
-
 var coin_counter = 0
 
 func _physics_process(delta: float) -> void:
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		sfx_attack.play()
 		_play_attack()
-		return  # stopper videre bevegelses/animasjonslogikk mens attack spiller
+		return  # Stopper annen bevegelseslogikk mens attack skjer
 
 	# Jump
 	if Input.is_action_just_pressed("ui_accept") and jumps_left > 0:
@@ -66,10 +66,25 @@ func _play_attack() -> void:
 	is_attacking = true
 	anim.play("attack")
 
-	# Når attack-animasjonen er ferdig, gå tilbake til idle
+	# slå på hitbox
+	attack_hitbox.monitoring = true
+	attack_shape.disabled = false
+
+	# vent til attack-animasjonen er ferdig
 	await anim.animation_finished
 
+	# slå av hitbox
+	attack_hitbox.monitoring = false
+	attack_shape.disabled = true
+
 	is_attacking = false
+
+
+# Når NPC treffer spilleren
+func hurt():
+	if not is_attacking:  # kan ikke bli "interruptet" midt i attack hvis du ønsker det
+		anim.play("hurt")
+
 
 func _on_area_2d_coin_area_entered(area: Area2D) -> void:
 	if area.is_in_group("coin"):
@@ -77,6 +92,7 @@ func _on_area_2d_coin_area_entered(area: Area2D) -> void:
 		set_coin(coin_counter + 1)
 		print(coin_counter)
 
+
 func set_coin(new_coin_count: int) -> void:
 	coin_counter = new_coin_count
-	coin_label.text = "Coin Count: " + str(coin_counter )
+	coin_label.text = "Coin Count: " + str(coin_counter)

@@ -40,17 +40,20 @@ size = Vector2(12, 26)
 
 [node name="NPC" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="enemy" type="CharacterBody2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="enemy"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bc6q4")
+autoplay = "default"
 frame = 2
 frame_progress = 0.8338719
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+scale = Vector2(1, 0.9200003)
 shape = SubResource("CapsuleShape2D_ideak")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="enemy"]
 position = Vector2(0, 3)
+scale = Vector2(1, 1.0399997)
 shape = SubResource("RectangleShape2D_ideak")
