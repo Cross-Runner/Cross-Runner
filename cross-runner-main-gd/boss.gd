@@ -17,12 +17,15 @@ var player: Node = null
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var healthbar = $Healthbar
 
 func _ready() -> void:
 	health = max_health
 	if health_bar:
+		healthbar.init_health(health)
 		health_bar.max_value = max_health
 		health_bar.value = health
+		healthbar.health = health
 
 	attack_hitbox.monitoring = false
 	can_attack = true

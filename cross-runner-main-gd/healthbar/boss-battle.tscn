@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bka4d2lhm21p1"]
+[gd_scene load_steps=6 format=3 uid="uid://c348uex52dhjn"]
 
 [ext_resource type="Script" uid="uid://dv2th6dbepyt8" path="res://healthbar/Boss_Healthbar.gd" id="1_odoqe"]
 
@@ -19,11 +19,10 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqout"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="BossBattle" type="ProgressBar"]
+[node name="BossBattle" type="Node2D"]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 z_index = 1
-layout_mode = 0
 offset_right = 240.0
 offset_bottom = 4.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_061bp")
