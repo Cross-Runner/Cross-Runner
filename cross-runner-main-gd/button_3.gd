@@ -1,7 +1,7 @@
 extends Button
 
 
-@export var target_scene: String = "res://CR_Scene4.tscn"
+@export var target_scene: String = "res://Credits.tscn"
 @onready var sfx_button: AudioStreamPlayer2D = $"../../sfx_button"
 
 func _ready() -> void:
