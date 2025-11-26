@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://4g4uguj7kex2"]
+[gd_scene load_steps=84 format=4 uid="uid://0wwuuyj8cwg3"]
 
 [ext_resource type="Texture2D" uid="uid://ql2okrshffpq" path="res://Resources/Final/Background_0.png" id="1_e3hiu"]
 [ext_resource type="Texture2D" uid="uid://r1kaybxap2v3" path="res://Resources/Final/Grass_background_1.png" id="2_7236l"]
@@ -1515,7 +1515,6 @@ position = Vector2(20.999992, 0.99999964)
 rotation = -0.17618008
 scale = Vector2(1.9200046, 1)
 shape = SubResource("CircleShape2D_w5wtu")
-disabled = true
 
 [node name="enemy" type="CharacterBody2D" parent="."]
 position = Vector2(1997.9999, 977.99994)
