@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://diwdfyykp7sxb"]
+[gd_scene load_steps=102 format=4 uid="uid://diwdfyykp7sxb"]
 
 [ext_resource type="Texture2D" uid="uid://3wg4ue1a0oxy" path="res://boss battle/idle_1.png" id="1_oawp3"]
 [ext_resource type="Texture2D" uid="uid://druqgh2u34aqq" path="res://boss battle/idle_2.png" id="2_ihck0"]
@@ -49,6 +49,12 @@
 [ext_resource type="Texture2D" uid="uid://bf8ecgarnybrw" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/HURT.png" id="47_2gvwi"]
 [ext_resource type="Texture2D" uid="uid://bfwqdqbyfs8qk" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="48_fokhc"]
 [ext_resource type="Texture2D" uid="uid://bujs3nind3v03" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/RUN.png" id="49_2hasp"]
+[ext_resource type="AudioStream" uid="uid://ccamgmnbjey64" path="res://sfx/narutoJumpsfx.ogg" id="50_cj8yt"]
+[ext_resource type="AudioStream" uid="uid://rola3al1cmax" path="res://sfx/narutoSwingsfx.ogg" id="51_srqgh"]
+[ext_resource type="AudioStream" uid="uid://xlbh4thvu07n" path="res://sfx/untitled.wav" id="52_aafso"]
+[ext_resource type="AudioStream" uid="uid://bdg7b2u2v1dev" path="res://sfx/buttonSFX1.wav" id="53_euh5t"]
+[ext_resource type="AudioStream" uid="uid://b04d1ly2j7c24" path="res://sfx/Jeremy Korpas - Sour Rock  NO COPYRIGHT 8-bit Music.mp3" id="54_85puo"]
+[ext_resource type="Texture2D" uid="uid://bqqdk4e7hv0he" path="res://HUD/hudHeart_full.png" id="55_srqgh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xd72a"]
 atlas = ExtResource("17_lii25")
@@ -734,7 +740,7 @@ region = Rect2(1344, 0, 96, 96)
 atlas = ExtResource("49_2hasp")
 region = Rect2(1440, 0, 96, 96)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cj8yt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_aafso"]
 animations = [{
 "frames": [{
 "duration": 2.0,
@@ -856,11 +862,22 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_srqgh"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_euh5t"]
 radius = 11.919632
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aafso"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85puo"]
 size = Vector2(19.6131, 23.095245)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1da82"]
+font_size = 50
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1ytx"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lw2xp"]
+radius = 12.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -892,26 +909,95 @@ tile_set = SubResource("TileSet_bo3pb")
 position = Vector2(250.5, 22)
 shape = SubResource("RectangleShape2D_lii25")
 
+[node name="sfx_jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("50_cj8yt")
+volume_db = -10.0
+pitch_scale = 1.32
+
+[node name="sfx_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("51_srqgh")
+
+[node name="sfx_coin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("52_aafso")
+volume_db = -10.0
+pitch_scale = 1.5
+
+[node name="sfx_button" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("53_euh5t")
+volume_db = -3.0
+
+[node name="MUSIC" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("54_85puo")
+volume_db = -12.0
+autoplay = true
+
 [node name="Player4Boss" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(58, -6)
+position = Vector2(59, -5)
 scale = Vector2(1.0000004, 1.0000004)
 script = ExtResource("45_yrrxs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player4Boss"]
 texture_filter = 1
 position = Vector2(0, -14.285736)
-sprite_frames = SubResource("SpriteFrames_cj8yt")
-animation = &"walk"
+sprite_frames = SubResource("SpriteFrames_aafso")
+animation = &"attack"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Boss"]
 position = Vector2(4.464304, -0.8927939)
-shape = SubResource("CircleShape2D_srqgh")
+shape = SubResource("CircleShape2D_euh5t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player4Boss"]
 position = Vector2(3.2589512, 7.4404297)
-shape = SubResource("RectangleShape2D_aafso")
+shape = SubResource("RectangleShape2D_85puo")
 
 [node name="Camera2D" type="Camera2D" parent="Player4Boss"]
 offset = Vector2(50, -20)
 zoom = Vector2(8, 8)
+position_smoothing_enabled = true
+
+[node name="health_bar" type="CanvasLayer" parent="Player4Boss"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player4Boss/health_bar"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="heart" type="TextureRect" parent="Player4Boss/health_bar/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("55_srqgh")
+
+[node name="heart2" type="TextureRect" parent="Player4Boss/health_bar/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("55_srqgh")
+
+[node name="heart3" type="TextureRect" parent="Player4Boss/health_bar/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("55_srqgh")
+
+[node name="Label" type="Label" parent="Player4Boss/health_bar"]
+unique_name_in_owner = true
+offset_left = 12.0
+offset_top = 242.0
+offset_right = 347.0
+offset_bottom = 311.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Coin Count: 0 "
+label_settings = SubResource("LabelSettings_1da82")
+
+[node name="Area2D_coin" type="Area2D" parent="Player4Boss"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Boss/Area2D_coin"]
+position = Vector2(3.9999983, 2.999999)
+shape = SubResource("CircleShape2D_b1ytx")
+
+[node name="AttackHitbox" type="Area2D" parent="Player4Boss"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Boss/AttackHitbox"]
+position = Vector2(20.999992, 0.99999964)
+rotation = -0.17618008
+scale = Vector2(1.9200046, 1)
+shape = SubResource("CircleShape2D_lw2xp")
+
+[connection signal="area_entered" from="Player4Boss/Area2D_coin" to="Player4Boss" method="_on_area_2d_coin_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8yw45yb0vja"]
+[gd_scene load_steps=6 format=3 uid="uid://cj6mtm1ocvtig"]
 
 [ext_resource type="Texture2D" uid="uid://dkr6jseitwavu" path="res://Resources/Facts-about-Chrismtas-5.jpg" id="1_qoqlk"]
 [ext_resource type="Script" uid="uid://yelvnhqekend" path="res://button.gd" id="2_iwfq2"]
