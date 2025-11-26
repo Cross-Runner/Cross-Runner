@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8yw45yb0vja"]
+[gd_scene load_steps=6 format=3 uid="uid://cj6mtm1ocvtig"]
 
-[ext_resource type="Texture2D" uid="uid://dkr6jseitwavu" path="res://Resources/Facts-about-Chrismtas-5.jpg" id="1_qoqlk"]
+[ext_resource type="Texture2D" uid="uid://da5lamm471h11" path="res://hq720.png" id="1_qoqlk"]
 [ext_resource type="Script" uid="uid://yelvnhqekend" path="res://button.gd" id="2_iwfq2"]
-[ext_resource type="Script" uid="uid://56y53ahymf7c" path="res://button_3.gd" id="3_7r1g0"]
+[ext_resource type="Script" path="res://button_3.gd" id="3_7r1g0"]
 [ext_resource type="AudioStream" uid="uid://bdg7b2u2v1dev" path="res://sfx/buttonSFX1.wav" id="4_cqjrg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
@@ -22,8 +22,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FactsAboutChrismtas5" type="Sprite2D" parent="."]
-position = Vector2(1721.8872, 962.5)
-scale = Vector2(5.415392, 4.764851)
+position = Vector2(1643.2308, 923.5581)
+scale = Vector2(5.644711, 4.9666224)
 texture = ExtResource("1_qoqlk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
