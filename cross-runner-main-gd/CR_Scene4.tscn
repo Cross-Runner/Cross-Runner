@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+[gd_scene load_steps=84 format=4 uid="uid://4g4uguj7kex2"]
+=======
 [gd_scene load_steps=79 format=4 uid="uid://45vk8t3n1sg1"]
+>>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
 
 [ext_resource type="Texture2D" uid="uid://ql2okrshffpq" path="res://Resources/Final/Background_0.png" id="1_e3hiu"]
 [ext_resource type="Script" uid="uid://bx5058aos2c15" path="res://PlayerStats.gd" id="1_w5wtu"]
@@ -19,7 +23,12 @@
 [ext_resource type="AudioStream" uid="uid://xlbh4thvu07n" path="res://sfx/untitled.wav" id="15_1tr0o"]
 [ext_resource type="AudioStream" uid="uid://bdg7b2u2v1dev" path="res://sfx/buttonSFX1.wav" id="16_theea"]
 [ext_resource type="AudioStream" uid="uid://b04d1ly2j7c24" path="res://sfx/Jeremy Korpas - Sour Rock  NO COPYRIGHT 8-bit Music.mp3" id="18_8bw4v"]
+<<<<<<< HEAD
+[ext_resource type="Script" uid="uid://c24ulin6uq2ow" path="res://enemy.gd" id="18_63lqf"]
+[ext_resource type="Texture2D" uid="uid://cc4wv7g5o8ncy" path="res://Resources/NES - Faxanadu - Miscellaneous - NPCs.png" id="18_w5wtu"]
+=======
 [ext_resource type="Script" uid="uid://d2odl3gk4nona" path="res://area_2d.gd" id="18_w5wtu"]
+>>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e4tx"]
 texture = ExtResource("3_7236l")
@@ -1103,11 +1112,55 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wjic"]
 radius = 16.0
 
+<<<<<<< HEAD
+[sub_resource type="CircleShape2D" id="CircleShape2D_w5wtu"]
+radius = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxcha"]
+atlas = ExtResource("18_w5wtu")
+region = Rect2(7, 814, 19, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh24r"]
+atlas = ExtResource("18_w5wtu")
+region = Rect2(26, 814, 19, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul7y6"]
+atlas = ExtResource("18_w5wtu")
+region = Rect2(45, 814, 19, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63lqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxcha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh24r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul7y6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4vjv"]
+radius = 6.0
+height = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ru"]
+size = Vector2(12, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fi72o"]
+size = Vector2(16.666962, 36.11116)
+=======
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bw4v"]
 radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ru"]
 size = Vector2(121.5, 44)
+>>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_w5wtu")
@@ -1422,7 +1475,7 @@ script = ExtResource("5_526jq")
 texture_filter = 1
 position = Vector2(0, -14.285736)
 sprite_frames = SubResource("SpriteFrames_id2bo")
-animation = &"walk"
+animation = &"attack"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -1473,6 +1526,40 @@ label_settings = SubResource("LabelSettings_kq7lv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D_coin"]
 position = Vector2(3.9999983, 2.999999)
 shape = SubResource("CircleShape2D_2wjic")
+
+[node name="AttackHitbox" type="Area2D" parent="CharacterBody2D"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackHitbox"]
+position = Vector2(20.999992, 0.99999964)
+rotation = -0.17618008
+scale = Vector2(1.9200046, 1)
+shape = SubResource("CircleShape2D_w5wtu")
+disabled = true
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+position = Vector2(1997.9999, 977.99994)
+scale = Vector2(0.72, 0.72)
+script = ExtResource("18_63lqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="enemy"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_63lqf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("CapsuleShape2D_t4vjv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="enemy"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_k52ru")
+
+[node name="Hurtbox" type="Area2D" parent="enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/Hurtbox"]
+position = Vector2(0, -1.388916)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_fi72o")
 
 [node name="coin" parent="." instance=ExtResource("12_kq7lv")]
 position = Vector2(724, 929.00006)
@@ -1537,4 +1624,8 @@ shape = SubResource("RectangleShape2D_k52ru")
 
 [connection signal="area_entered" from="TileMapLayer/Killbody/Area2D4D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/Area2D_coin" to="CharacterBody2D" method="_on_area_2d_coin_area_entered"]
+<<<<<<< HEAD
+[connection signal="area_entered" from="enemy/Hurtbox" to="TileMapLayer/Killbody/Area2D4D" method="_on_hurtbox_area_entered"]
+=======
 [connection signal="body_entered" from="Area2D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_2d_body_entered"]
+>>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
