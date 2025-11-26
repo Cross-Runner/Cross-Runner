@@ -20,6 +20,7 @@ func _physics_process(delta):
 	if is_dead:
 		return  # NPC stopper all logikk om den er død
 
+	# --- BEVEGELSE / AI ---
 	var dist_to_player = global_position.distance_to(target.global_position)
 
 	if dist_to_player < aggro_distance:
@@ -28,11 +29,9 @@ func _physics_process(delta):
 
 		velocity.x = direction * speed
 
-		# Flip ANIMASJON basert på retning
-		# (du sa spriten din er speilvendt)
+		# Flip animasjon (du sa den er speilvendt)
 		sprite.flip_h = direction > 0
 
-		# Spill walk-animasjon
 		if sprite.animation != "walk":
 			sprite.play("walk")
 
@@ -42,10 +41,20 @@ func _physics_process(delta):
 		if sprite.animation != "idle":
 			sprite.play("idle")
 
+	# Utfør bevegelsen
 	move_and_slide()
 
+	# --- KONTAKT-SKADE I GODOT 4 (erstatter body_entered) ---
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
 
-# NPC blir truffet av spillerens attack
+		if collider and collider.name == "CharacterBody2D":
+			if collider.has_method("hurt"):
+				collider.hurt()
+
+
+# NPC blir truffet av spillerens angrep
 func _on_Hurtbox_area_entered(area):
 	if area.name == "AttackHitbox":
 		die()
@@ -57,19 +66,8 @@ func die():
 
 	is_dead = true
 
-	# Spill death-animasjon hvis du har en
 	if sprite.has_animation("death"):
 		sprite.play("death")
 		await sprite.animation_finished
 
 	queue_free()
-
-
-# NPC skader spilleren ved kontakt
-func _on_body_entered(body):
-	if is_dead:
-		return
-
-	if body.name == "CharacterBody2D": # spilleren
-		if body.has_method("hurt"):
-			body.hurt()
