@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://diwdfyykp7sxb"]
+[gd_scene load_steps=94 format=4 uid="uid://diwdfyykp7sxb"]
 
 [ext_resource type="Texture2D" uid="uid://3wg4ue1a0oxy" path="res://boss battle/idle_1.png" id="1_oawp3"]
 [ext_resource type="Texture2D" uid="uid://druqgh2u34aqq" path="res://boss battle/idle_2.png" id="2_ihck0"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bnsk4grl2uwfj" path="res://walk_8.png" id="41_2f0mp"]
 [ext_resource type="Texture2D" uid="uid://c3a2b0042oxxs" path="res://walk_7.png" id="42_032d6"]
 [ext_resource type="Texture2D" uid="uid://dreoxo2rhtr7x" path="res://walk_6.png" id="43_ltglc"]
+[ext_resource type="PackedScene" uid="uid://oorlg6ms5lf3" path="res://NewbossHealthbar.tscn" id="44_xrsnh"]
 [ext_resource type="Script" path="res://boss battle/player_4_boss.gd" id="45_yrrxs"]
 [ext_resource type="Texture2D" uid="uid://ftq5tcoqrabm" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/ATTACK 1.png" id="46_xrsnh"]
 [ext_resource type="Texture2D" uid="uid://bf8ecgarnybrw" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/HURT.png" id="47_2gvwi"]
@@ -881,6 +882,12 @@ shape = SubResource("CircleShape2D_lii25")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BossCharacter"]
 position = Vector2(263, -19)
 shape = SubResource("RectangleShape2D_uwyy4")
+
+[node name="ProgressBar" parent="BossCharacter" instance=ExtResource("44_xrsnh")]
+offset_left = 158.0
+offset_top = -83.0
+offset_right = 398.0
+offset_bottom = -79.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAACAAAAAAAIAAEAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAEAAAAFAAAAAAAIAAEAAAAGAAAAAAAIAAEAAAAHAAAAAAAIAAEAAAAIAAAAAAAIAAEAAAAJAAAAAAAIAAEAAAAKAAAAAAAIAAEAAAALAAAAAAAIAAEAAAAMAAAAAAAIAAEAAAANAAAAAAAIAAEAAAAOAAAAAAAIAAEAAAAPAAAAAAAIAAEAAAAQAAAAAAAIAAEAAAARAAAAAAAIAAEAAAASAAAAAAAIAAEAAAATAAAAAAAIAAEAAAAVAAAAAAAIAAEAAAAWAAAAAAAIAAEAAAAXAAAAAAAIAAEAAAAYAAAAAAAIAAEAAAAZAAAAAAAIAAEAAAAaAAAAAAAIAAEAAAAUAAAAAAAIAAEAAAAbAAAAAAAIAAEAAAAcAAAAAAAIAAEAAAADAAEAAAADAAMAAAAEAAEAAAADAAMAAAAFAAEAAAADAAMAAAAGAAEAAAADAAMAAAAHAAEAAAADAAMAAAAIAAEAAAADAAMAAAAJAAEAAAADAAMAAAAKAAEAAAADAAMAAAALAAEAAAADAAMAAAAMAAEAAAADAAMAAAANAAEAAAADAAMAAAAOAAEAAAADAAMAAAAPAAEAAAADAAMAAAAQAAEAAAADAAMAAAARAAEAAAADAAMAAAASAAEAAAADAAMAAAATAAEAAAADAAMAAAAUAAEAAAADAAMAAAAVAAEAAAADAAMAAAAWAAEAAAADAAMAAAAXAAEAAAADAAMAAAAYAAEAAAADAAMAAAAbAAEAAAADAAMAAAAaAAEAAAADAAMAAAAZAAEAAAADAAMAAAAcAAEAAAAHAAMAAAACAAEAAAACAAMAAAA=")
