@@ -44,7 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bnsk4grl2uwfj" path="res://walk_8.png" id="41_2f0mp"]
 [ext_resource type="Texture2D" uid="uid://c3a2b0042oxxs" path="res://walk_7.png" id="42_032d6"]
 [ext_resource type="Texture2D" uid="uid://dreoxo2rhtr7x" path="res://walk_6.png" id="43_ltglc"]
-[ext_resource type="Script" path="res://boss battle/player_4_boss.gd" id="45_yrrxs"]
+[ext_resource type="Script" uid="uid://b1ss0203ccvwy" path="res://boss battle/player_4_boss.gd" id="45_yrrxs"]
 [ext_resource type="Texture2D" uid="uid://ftq5tcoqrabm" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/ATTACK 1.png" id="46_xrsnh"]
 [ext_resource type="Texture2D" uid="uid://bf8ecgarnybrw" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/HURT.png" id="47_2gvwi"]
 [ext_resource type="Texture2D" uid="uid://bfwqdqbyfs8qk" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="48_fokhc"]
@@ -211,7 +211,7 @@ animations = [{
 radius = 28.160255
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwyy4"]
-size = Vector2(54, 38)
+size = Vector2(58, 38)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odrhd"]
 texture = ExtResource("17_ihck0")
@@ -867,7 +867,7 @@ size = Vector2(19.6131, 23.095245)
 [node name="BossCharacter" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BossCharacter"]
-position = Vector2(268.00003, -49.000004)
+position = Vector2(268.00003, -42)
 scale = Vector2(0.71313936, 0.7679686)
 sprite_frames = SubResource("SpriteFrames_h5xi8")
 animation = &"new_animation_1"
@@ -875,11 +875,11 @@ autoplay = "default"
 frame_progress = 0.16988163
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossCharacter"]
-position = Vector2(265, -38)
+position = Vector2(265, -34)
 shape = SubResource("CircleShape2D_lii25")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BossCharacter"]
-position = Vector2(263, -19)
+position = Vector2(265, -12)
 shape = SubResource("RectangleShape2D_uwyy4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
