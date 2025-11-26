@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="CrossRunner Main GD"
-run/main_scene="uid://8yw45yb0vja"
+run/main_scene="uid://blg3jne5ooksc"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerStats="*res://PlayerStats.gd"
 
 [display]
 
