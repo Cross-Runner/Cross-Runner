@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-[gd_scene load_steps=84 format=4 uid="uid://4g4uguj7kex2"]
-=======
-[gd_scene load_steps=79 format=4 uid="uid://45vk8t3n1sg1"]
->>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
+[gd_scene load_steps=84 format=4 uid="uid://0wwuuyj8cwg3"]
 
 [ext_resource type="Texture2D" uid="uid://ql2okrshffpq" path="res://Resources/Final/Background_0.png" id="1_e3hiu"]
-[ext_resource type="Script" uid="uid://bx5058aos2c15" path="res://PlayerStats.gd" id="1_w5wtu"]
 [ext_resource type="Texture2D" uid="uid://r1kaybxap2v3" path="res://Resources/Final/Grass_background_1.png" id="2_7236l"]
 [ext_resource type="Texture2D" uid="uid://cwwp3kabon0lc" path="res://Resources/Final/Tiles.png" id="3_7236l"]
 [ext_resource type="Texture2D" uid="uid://lbhnhc3yjxd4" path="res://Resources/Final/113-1139407_portal-transparent-portal-pixel-art-png-png-download (1).png" id="4_8e4tx"]
@@ -16,19 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://bfwqdqbyfs8qk" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="8_kq7lv"]
 [ext_resource type="Texture2D" uid="uid://bujs3nind3v03" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/RUN.png" id="9_8438c"]
 [ext_resource type="Texture2D" uid="uid://bqqdk4e7hv0he" path="res://HUD/hudHeart_full.png" id="11_2wjic"]
-[ext_resource type="Script" uid="uid://ddx45w5iauixj" path="res://h_box_container.gd" id="12_63lqf"]
-[ext_resource type="PackedScene" path="res://coin.tscn" id="12_kq7lv"]
+[ext_resource type="PackedScene" uid="uid://w5ifqe76lkfr" path="res://coin.tscn" id="12_kq7lv"]
 [ext_resource type="AudioStream" uid="uid://ccamgmnbjey64" path="res://sfx/narutoJumpsfx.ogg" id="13_8438c"]
 [ext_resource type="AudioStream" uid="uid://rola3al1cmax" path="res://sfx/narutoSwingsfx.ogg" id="14_id2bo"]
 [ext_resource type="AudioStream" uid="uid://xlbh4thvu07n" path="res://sfx/untitled.wav" id="15_1tr0o"]
 [ext_resource type="AudioStream" uid="uid://bdg7b2u2v1dev" path="res://sfx/buttonSFX1.wav" id="16_theea"]
 [ext_resource type="AudioStream" uid="uid://b04d1ly2j7c24" path="res://sfx/Jeremy Korpas - Sour Rock  NO COPYRIGHT 8-bit Music.mp3" id="18_8bw4v"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://c24ulin6uq2ow" path="res://enemy.gd" id="18_63lqf"]
 [ext_resource type="Texture2D" uid="uid://cc4wv7g5o8ncy" path="res://Resources/NES - Faxanadu - Miscellaneous - NPCs.png" id="18_w5wtu"]
-=======
-[ext_resource type="Script" uid="uid://d2odl3gk4nona" path="res://area_2d.gd" id="18_w5wtu"]
->>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e4tx"]
 texture = ExtResource("3_7236l")
@@ -1112,7 +1102,6 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wjic"]
 radius = 16.0
 
-<<<<<<< HEAD
 [sub_resource type="CircleShape2D" id="CircleShape2D_w5wtu"]
 radius = 12.0
 
@@ -1154,16 +1143,8 @@ size = Vector2(12, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fi72o"]
 size = Vector2(16.666962, 36.11116)
-=======
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bw4v"]
-radius = 4.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k52ru"]
-size = Vector2(121.5, 44)
->>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_w5wtu")
 
 [node name="BACKGROUND" type="Node2D" parent="."]
 
@@ -1496,7 +1477,6 @@ position_smoothing_enabled = true
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterBody2D/health_bar"]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("12_63lqf")
 
 [node name="heart" type="TextureRect" parent="CharacterBody2D/health_bar/HBoxContainer"]
 layout_mode = 2
@@ -1535,7 +1515,6 @@ position = Vector2(20.999992, 0.99999964)
 rotation = -0.17618008
 scale = Vector2(1.9200046, 1)
 shape = SubResource("CircleShape2D_w5wtu")
-disabled = true
 
 [node name="enemy" type="CharacterBody2D" parent="."]
 position = Vector2(1997.9999, 977.99994)
@@ -1611,21 +1590,6 @@ stream = ExtResource("18_8bw4v")
 volume_db = -12.0
 autoplay = true
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("18_w5wtu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(838, 931)
-shape = SubResource("CapsuleShape2D_8bw4v")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1470.25, 1049)
-shape = SubResource("RectangleShape2D_k52ru")
-
 [connection signal="area_entered" from="TileMapLayer/Killbody/Area2D4D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/Area2D_coin" to="CharacterBody2D" method="_on_area_2d_coin_area_entered"]
-<<<<<<< HEAD
 [connection signal="area_entered" from="enemy/Hurtbox" to="TileMapLayer/Killbody/Area2D4D" method="_on_hurtbox_area_entered"]
-=======
-[connection signal="body_entered" from="Area2D" to="TileMapLayer/Killbody/Area2D4D" method="_on_area_2d_body_entered"]
->>>>>>> 044347ed8adf53ef4b6812822a643ed69d305c31
