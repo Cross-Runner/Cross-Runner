@@ -1,7 +1,6 @@
-[gd_scene load_steps=94 format=4 uid="uid://diwdfyykp7sxb"]
+[gd_scene load_steps=93 format=4 uid="uid://diwdfyykp7sxb"]
 
 [ext_resource type="Texture2D" uid="uid://3wg4ue1a0oxy" path="res://boss battle/idle_1.png" id="1_oawp3"]
-[ext_resource type="Script" uid="uid://xe0edrfw1jpx" path="res://boss battle/boss_character.gd" id="1_yrrxs"]
 [ext_resource type="Texture2D" uid="uid://druqgh2u34aqq" path="res://boss battle/idle_2.png" id="2_ihck0"]
 [ext_resource type="Texture2D" uid="uid://bsdd711clrq8k" path="res://boss battle/idle_3.png" id="3_ctx4h"]
 [ext_resource type="Texture2D" uid="uid://de883osg3hnuh" path="res://boss battle/idle_4.png" id="4_e51dc"]
@@ -45,7 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bnsk4grl2uwfj" path="res://walk_8.png" id="41_2f0mp"]
 [ext_resource type="Texture2D" uid="uid://c3a2b0042oxxs" path="res://walk_7.png" id="42_032d6"]
 [ext_resource type="Texture2D" uid="uid://dreoxo2rhtr7x" path="res://walk_6.png" id="43_ltglc"]
-[ext_resource type="Script" uid="uid://b1ss0203ccvwy" path="res://boss battle/player_4_boss.gd" id="45_yrrxs"]
+[ext_resource type="Script" path="res://boss battle/player_4_boss.gd" id="45_yrrxs"]
 [ext_resource type="Texture2D" uid="uid://ftq5tcoqrabm" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/ATTACK 1.png" id="46_xrsnh"]
 [ext_resource type="Texture2D" uid="uid://bf8ecgarnybrw" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/HURT.png" id="47_2gvwi"]
 [ext_resource type="Texture2D" uid="uid://bfwqdqbyfs8qk" path="res://FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="48_fokhc"]
@@ -866,7 +865,6 @@ size = Vector2(19.6131, 23.095245)
 [node name="Node2D" type="Node2D"]
 
 [node name="BossCharacter" type="CharacterBody2D" parent="."]
-script = ExtResource("1_yrrxs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BossCharacter"]
 position = Vector2(268.00003, -49.000004)
