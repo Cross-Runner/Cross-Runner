@@ -124,4 +124,5 @@ func _on_animation_finished(anim_name: String) -> void:
 func print_debug(text: String) -> void:
 	# print only in editor or debug builds
 	if Engine.is_editor_hint() or OS.is_debug_build():
-		print(text)
+		print(text) 
+	   
